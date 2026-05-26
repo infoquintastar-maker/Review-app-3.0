@@ -9,7 +9,6 @@ try {
 } catch (e) {}
 
 module.exports = function handler(req, res) {
-  // Read the slug from the Referer header (the page that requested the manifest)
   const referer = req.headers.referer || req.headers.referrer || '';
   let slug = '';
   try {
@@ -30,17 +29,10 @@ module.exports = function handler(req, res) {
     theme_color:      '#4F46E5',
     orientation:      'portrait-primary',
     lang:             'es',
-    icons: [
-      {
-        src:     '/icon.svg',
-        sizes:   'any',
-        type:    'image/svg+xml',
-        purpose: 'any maskable'
-      }
-    ]
+    icons: [{ src: '/icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any maskable' }]
   };
 
-  res.setHeader('Content-Type', 'application/manifest+json');
+  res.setHeader('Content-Type',  'application/manifest+json');
   res.setHeader('Cache-Control', 'no-cache');
   return res.status(200).json(manifest);
 };
