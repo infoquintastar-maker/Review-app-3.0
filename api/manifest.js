@@ -9,12 +9,7 @@ try {
 } catch (e) {}
 
 module.exports = function handler(req, res) {
-  const referer = req.headers.referer || req.headers.referrer || '';
-  let slug = '';
-  try {
-    slug = new URL(referer).pathname.replace(/^\/+/, '').split('/')[0];
-  } catch (_) {}
-
+  const slug   = req.query.slug || '';
   const client = clients[slug];
   const name   = client?.name || 'Reseñas Google';
 
